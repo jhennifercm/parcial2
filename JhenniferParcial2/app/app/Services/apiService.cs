@@ -25,7 +25,7 @@
             }
 
 
-            bool isReachable = VerifyConnectionURL("https://productosi220.azurewebsites.net/");
+            bool isReachable = VerifyConnectionURL("https://notesplc.azurewebsites.net/");
             if (!isReachable)
             {
                 return new Response
@@ -63,8 +63,9 @@
 
         public async Task<TokenResponse> GetToken(
             string urlBase,
-            string username,
-            string password)
+            int nota,
+            string password,
+            string https)
         {
             try
             {
@@ -72,7 +73,7 @@
                 client.BaseAddress = new Uri(urlBase);
                 StringContent head = new StringContent(string.Format(
                     "grant_type=password&username={0}&password={1}",
-                    username, password),
+                    nota, password),
                     Encoding.UTF8, "application/x-www-form-urlencoded");
                 HttpResponseMessage response = await client.PostAsync("Token", head);
                 var resultJSON = await response.Content.ReadAsStringAsync();
@@ -84,6 +85,11 @@
             {
                 return null;
             }
+        }
+
+        internal Task<T> Post<T>()
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<Response> Get<T>(

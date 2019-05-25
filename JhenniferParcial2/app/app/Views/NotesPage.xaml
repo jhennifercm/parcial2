@@ -36,7 +36,7 @@
             <Button
 	                    BackgroundColor="Navy"
 	                    Text="REGISTRAR NOTA"
-	                    Command="{Binding LoginCommand,Mode=TwoWay}"
+	                    Command="{Binding RegistroCommand,Mode=TwoWay}"
 	                    IsEnabled="{Binding IsEnabled}"
 	                    TextColor="White">
             </Button>
